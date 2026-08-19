@@ -1,0 +1,313 @@
+/* Photo-skins card styles. Scoped under the body attribute the client entry
+ * stamps (data-dsh-photo-skins), so they survive other skins' try-on cycles.
+ * Accent-driven surfaces read the CSS variables the controller writes while a
+ * palette is active (--dsw-photo-accent / -soft / -contrast). */
+
+/*
+ * Photo-skin panel translucency. The shell paints its surfaces (frame,
+ * sidebar, conversation) with the opaque `--dsw-alias-bg-*` variables, which
+ * would cover the body backdrop entirely. While a photo skin is active
+ * (body[data-dsh-photo-skin]) we swap those variables for semi-transparent
+ * glass so the photo shows through. The photo itself already carries a dim +
+ * tinted readability scrim in its background stack.
+ */
+body[data-dsh-photo-skin] {
+  --dsw-alias-bg-base: rgba(255, 255, 255, 0.42);
+  --dsw-alias-bg-layer-1: rgba(250, 250, 251, 0.40);
+  --dsw-alias-bg-layer-2: rgba(250, 250, 251, 0.48);
+  --dsw-alias-bg-layer-3: rgba(255, 255, 255, 0.60);
+  --dsw-alias-bg-overlay: rgba(240, 241, 243, 0.70);
+  --dsw-alias-bg-module-platform: rgba(245, 246, 247, 0.60);
+  --dsw-alias-bg-multi-select: rgba(245, 246, 247, 0.60);
+  --dsw-specific-sidebar-fill: rgba(249, 250, 251, 0.40);
+  --dsw-specific-menu: rgba(255, 255, 255, 0.70);
+  --dsw-specific-input-major: rgba(255, 255, 255, 0.80);
+}
+
+body[data-dsh-photo-skin][data-ds-dark-theme] {
+  --dsw-alias-bg-base: rgba(21, 21, 23, 0.50);
+  --dsw-alias-bg-layer-1: rgba(21, 21, 23, 0.45);
+  --dsw-alias-bg-layer-2: rgba(27, 27, 28, 0.52);
+  --dsw-alias-bg-layer-3: rgba(27, 27, 28, 0.64);
+  --dsw-alias-bg-overlay: rgba(27, 27, 28, 0.72);
+  --dsw-alias-bg-module-platform: rgba(33, 33, 35, 0.58);
+  --dsw-alias-bg-multi-select: rgba(33, 33, 35, 0.58);
+  --dsw-specific-sidebar-fill: rgba(21, 21, 23, 0.45);
+  --dsw-specific-menu: rgba(27, 27, 28, 0.72);
+  --dsw-specific-input-major: rgba(27, 27, 28, 0.78);
+}
+
+body[data-dsh-photo-skins] .photoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+body[data-dsh-photo-skins] .enableRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+body[data-dsh-photo-skins] .enableLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ds-color-text-primary, inherit);
+}
+
+body[data-dsh-photo-skins] .enableHint {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ds-color-text-secondary, rgba(127, 127, 143, 0.9));
+}
+
+body[data-dsh-photo-skins] .statusRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ds-color-text-secondary, rgba(127, 127, 143, 0.9));
+}
+
+body[data-dsh-photo-skins] .statusError {
+  color: var(--ds-color-text-danger, #e5484d);
+}
+
+body[data-dsh-photo-skins] .controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(127, 127, 143, 0.08);
+}
+
+body[data-dsh-photo-skins] .themeRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body[data-dsh-photo-skins] .themeLabel {
+  font-size: 12px;
+  color: var(--ds-color-text-secondary, rgba(127, 127, 143, 0.9));
+  margin-right: 2px;
+}
+
+body[data-dsh-photo-skins] .themeButton {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--ds-color-border, rgba(127, 127, 143, 0.3));
+  background: transparent;
+  color: var(--ds-color-text-primary, inherit);
+  cursor: pointer;
+}
+
+body[data-dsh-photo-skins] .themeButtonActive {
+  background: var(--dsw-photo-accent, var(--ds-color-accent, #2e6be6));
+  color: var(--dsw-photo-accent-contrast, #ffffff);
+  border-color: transparent;
+}
+
+body[data-dsh-photo-skins] .backgroundRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 4px 10px;
+}
+
+body[data-dsh-photo-skins] .backgroundHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+body[data-dsh-photo-skins] .backgroundLabel {
+  font-size: 12px;
+  color: var(--ds-color-text-secondary, rgba(127, 127, 143, 0.9));
+}
+
+body[data-dsh-photo-skins] .backgroundValue {
+  font-size: 12px;
+  color: var(--ds-color-text-primary, inherit);
+  min-width: 34px;
+  text-align: right;
+}
+
+body[data-dsh-photo-skins] .backgroundRange {
+  width: 100%;
+  accent-color: var(--dsw-photo-accent, var(--ds-color-accent, #2e6be6));
+}
+
+body[data-dsh-photo-skins] .dropZone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px dashed var(--ds-color-border, rgba(127, 127, 143, 0.35));
+  background: rgba(127, 127, 143, 0.05);
+}
+
+body[data-dsh-photo-skins] .dropZoneOver {
+  border-color: var(--dsw-photo-accent, var(--ds-color-accent, #2e6be6));
+  background: var(--dsw-photo-accent-soft, rgba(46, 107, 230, 0.12));
+}
+
+body[data-dsh-photo-skins] .fileInput {
+  display: none;
+}
+
+body[data-dsh-photo-skins] .dropHint {
+  font-size: 12px;
+  color: var(--ds-color-text-secondary, rgba(127, 127, 143, 0.9));
+}
+
+body[data-dsh-photo-skins] .hintMuted {
+  margin: 0;
+  font-size: 11px;
+  color: var(--ds-color-text-secondary, rgba(127, 127, 143, 0.75));
+}
+
+body[data-dsh-photo-skins] .error {
+  font-size: 12px;
+  color: var(--ds-color-text-danger, #e5484d);
+}
+
+body[data-dsh-photo-skins] .photoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 10px;
+}
+
+body[data-dsh-photo-skins] .photoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--ds-color-border, rgba(127, 127, 143, 0.25));
+  background: rgba(127, 127, 143, 0.06);
+}
+
+body[data-dsh-photo-skins] .photoThumbWrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+body[data-dsh-photo-skins] .photoThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body[data-dsh-photo-skins] .photoThumbEmpty {
+  width: 100%;
+  height: 100%;
+}
+
+body[data-dsh-photo-skins] .badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-size: 10px;
+  color: #ffffff;
+  background: rgba(20, 20, 28, 0.72);
+}
+
+body[data-dsh-photo-skins] .badgeActive {
+  background: var(--dsw-photo-accent, #2e6be6);
+  color: var(--dsw-photo-accent-contrast, #ffffff);
+}
+
+body[data-dsh-photo-skins] .badgeTrying {
+  background: rgba(20, 20, 28, 0.72);
+  color: #ffffff;
+}
+
+body[data-dsh-photo-skins] .photoName {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ds-color-text-primary, inherit);
+}
+
+body[data-dsh-photo-skins] .photoMeta {
+  font-size: 10px;
+  color: var(--ds-color-text-secondary, rgba(127, 127, 143, 0.8));
+}
+
+body[data-dsh-photo-skins] .photoActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+body[data-dsh-photo-skins] .button {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--ds-color-border, rgba(127, 127, 143, 0.3));
+  background: transparent;
+  color: var(--ds-color-text-primary, inherit);
+  cursor: pointer;
+}
+
+body[data-dsh-photo-skins] .button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+body[data-dsh-photo-skins] .buttonPrimary {
+  background: var(--dsw-photo-accent, var(--ds-color-accent, #2e6be6));
+  color: var(--dsw-photo-accent-contrast, #ffffff);
+  border-color: transparent;
+}
+
+body[data-dsh-photo-skins] .buttonGhost {
+  border-color: transparent;
+  color: var(--ds-color-text-secondary, rgba(127, 127, 143, 0.9));
+}
+
+body[data-dsh-photo-skins] .switch {
+  position: relative;
+  width: 34px;
+  height: 18px;
+  border-radius: 9px;
+  border: 1px solid var(--ds-color-border, rgba(127, 127, 143, 0.35));
+  background: rgba(127, 127, 143, 0.25);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+body[data-dsh-photo-skins] .switchOn {
+  background: var(--dsw-photo-accent, var(--ds-color-accent, #2e6be6));
+  border-color: transparent;
+}
+
+body[data-dsh-photo-skins] .switchThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.12s ease;
+}
+
+body[data-dsh-photo-skins] .switchOn .switchThumb {
+  transform: translateX(16px);
+}

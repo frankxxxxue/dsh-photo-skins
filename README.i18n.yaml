@@ -1,0 +1,18 @@
+# README 配对一致性记录（docs 门禁用）
+
+## 配对文件
+
+- `README.md`（英文） ↔ `README.zh.md`（中文）
+- 两份 README 描述同一功能集，章节一一对应：What it does / 功能、Install / 安装、
+  Storage / 存储位置、Security model / 安全模型、Known limitations / 已知限制、
+  Development / 开发、License / 许可。
+
+## 翻译约定
+
+- 技术标识符（包名、路由、CSS 变量、命令）保持原文。
+- 中文侧为镜像翻译，不增删功能条目。
+
+## 更新规则
+
+- 改动任一侧，必须同步另一侧并保持章节对应；随后更新本文件的时间戳。
+- 上次同步：2026-08（初版）。

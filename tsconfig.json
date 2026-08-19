@@ -1,0 +1,19 @@
+{
+  // Self-contained compiler shape for the photo-skins bundle (no monorepo
+  // extends). Builds transpile-only (tsdown, dts: false): no type checking
+  // in the build, so the @deepseek-ai/dsh-* type-only imports resolve to
+  // nothing and are erased. `pnpm typecheck` runs tsc --noEmit on this file.
+  "compilerOptions": {
+    "target": "es2024",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "include": ["src", "tests"]
+}

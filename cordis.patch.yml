@@ -1,0 +1,6 @@
+# bundle patch for the photo-skins plugin: inserts its plugin row into the
+# web profile roster. Applied as a profile bundle layer (the `dsh.bundle.patch`
+# manifest field); install with `dsh plugin --profile web add <pkg>`.
+- insert:
+    - id: photo-skins
+      name: 'dsh-photo-skins'
